@@ -5,7 +5,7 @@ const RequestHelper = function (url) {
 RequestHelper.prototype.get = function () {
     return fetch(this.url)
         .then(response => response.json())
-        .catch((err) => { console.log('You done fuck up son', err) })
+        .catch((err) => { console.log('An error has occurred:', err) })
 };
 
 module.exports = RequestHelper;
