@@ -1,4 +1,4 @@
-const  Author = require('./models/author.js')
+const Author = require('./models/author.js')
 const DisplayView = require('./views/display_view.js')
 const HemmingwayDisplay = require('./views/hemmingway_view.js')
 const LinyutangDisplay = require('./views/linyutang_view.js')
@@ -6,7 +6,7 @@ const NobokovDisplay = require('./views/nobokov_view.js')
 const PratchettDisplay = require('./views/pratchett_view.js')
 const GuinDisplay = require('./views/guin_view.js')
 const DostDisplay = require('./views/dost_view.js')
-
+const MapView = require('./views/map_view.js')
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const displayContainer = document.querySelector('#book-list')
     const displayView = new DisplayView(displayContainer)
     displayView.bindEvents();
+
+    const mapDiv = document.querySelector('#mapid');
+    // const glasgowCoords = [55.86, -4.25];
+    // const zoomLevel = 10;
+    const mapView = new MapView(mapDiv);
+    mapView.init();
+    mapView.bindEvents();
 
     const hemmingwayDisplay = new HemmingwayDisplay(displayContainer)
     hemmingwayDisplay.bindEvents();

@@ -28,7 +28,7 @@ NobokovDisplay.prototype.render = function () {
     page_title.textContent = 'Book Trip - Vladimir Nobokov'
 
 
-    mymap.setView([52.522, 13.412], 4)
+    
 
     console.log(this.books);
 
@@ -54,13 +54,17 @@ NobokovDisplay.prototype.render = function () {
         textContainer.appendChild(description)
     }
 
-    const markerBerlin = L.marker([52.616, 13.447]).addTo(mymap);
-    const markerPeters = L.marker([ 59.88, 30.465]).addTo(mymap);
+    const markerBerlin = L.marker([52.616, 13.447])
+    const markerPeters = L.marker([ 59.88, 30.465])
     // const markerSunValley = L.marker([34.114, -118.237], { icon: blackIcon }).addTo(mymap);
     markerBerlin.bindPopup(`<a href="https://en.wikipedia.org/wiki/Vladimir_Nabokov#Berlin_years_(1922%E2%80%9337)">Nabokov left Berlin to escape the Nazis</a>`);
     markerPeters.bindPopup(`<a href="https://en.wikipedia.org/wiki/Vladimir_Nabokov#Russia">Nabokov was born in St. Petersburg in 1889</a>`);
+    const view = [52.522, 13.412];
+    const nobokovLocations = [markerBerlin, markerPeters];
+    const package = [nobokovLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 
-}
+}   
 
 
 
