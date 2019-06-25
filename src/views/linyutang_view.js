@@ -21,10 +21,6 @@ LinyutangDisplay.prototype.bindEvents = function () {
 LinyutangDisplay.prototype.render = function () {
     this.container.innerHTML = '';
 
-    
-
-    mymap.setView([24.65, 117.828], 4)
-
 
     const page_title = document.querySelector('#logo')
     page_title.textContent = 'Book Trip - Lin Yutang '
@@ -51,6 +47,11 @@ LinyutangDisplay.prototype.render = function () {
         textContainer.appendChild(description)
     }
 
+    const view = [24.65, 117.828];
+    const dostLocations = [];
+
+    const package = [dostLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 
 
 }

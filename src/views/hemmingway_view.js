@@ -20,10 +20,7 @@ HemmingwayDisplay.prototype.bindEvents = function () {
 
 HemmingwayDisplay.prototype.render = function () {
     this.container.innerHTML = '';
-    
-    mymap.setView([40.680, -90.970], 4)
-    
-   
+
     const page_title = document.querySelector('#logo')
     page_title.textContent = 'Book Trip - Ernest Hemingway'
 
@@ -49,19 +46,15 @@ HemmingwayDisplay.prototype.render = function () {
         textContainer.appendChild(description)
     }
 
-    var blackIcon = L.icon({
-        iconUrl: 'images/map-marker.svg',
+    const markerKeyWest = L.marker([24.694, -81.68 ])
+    const markerPamplona = L.marker([42.821, -1.642] )
+    const markerSunValley = L.marker([34.114, -118.237] )
+    const markerWyoming = L.marker([43.269, -107.58] )
+    const markerChicago = L.marker([41.866, -87.687] )
 
-        iconSize: [32, 37], // size of the icon
-        iconAnchor: [16, 37], // point of the icon which will correspond to marker's location
-        popupAnchor: [-3, -35] // point from which the popup should open relative to the iconAnchor
-    });
-
-    const markerKeyWest = L.marker([24.694, -81.68 ], {icon: blackIcon}).addTo(mymap);
-    const markerPamplona = L.marker([42.821, -1.642], { icon: blackIcon }).addTo(mymap);
-    const markerSunValley = L.marker([34.114, -118.237], { icon: blackIcon }).addTo(mymap);
-    const markerWyoming = L.marker([43.269, -107.58], { icon: blackIcon }).addTo(mymap);
-    const markerChicago = L.marker([41.866, -87.687], { icon: blackIcon }).addTo(mymap);
-
+    const view = [40.680, -90.970];
+    const hemingwayLocations = [markerKeyWest, markerPamplona, markerChicago, markerSunValley, markerWyoming];
+    const package = [hemingwayLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 }
     module.exports = HemmingwayDisplay;

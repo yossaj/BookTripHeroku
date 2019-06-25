@@ -23,9 +23,6 @@ DostDisplay.prototype.render = function () {
     this.container.innerHTML = '';
 
 
-    mymap.setView([55.924, 43.012], 4)
-
-
     const page_title = document.querySelector('#logo')
     page_title.textContent = 'Book Trip - Fyodor Dostoyevsky'
 
@@ -49,14 +46,19 @@ DostDisplay.prototype.render = function () {
         textContainer.appendChild(title)
         textContainer.appendChild(name)
         textContainer.appendChild(description)
-    }
+    };
 
-    var markerMoscow = L.marker([55.924, 38.012]).addTo(mymap);
-    var markerOmsk= L.marker([54.989,  73.358]).addTo(mymap);
-    var markerSemipalatinsk = L.marker([50.412, 80.241]).addTo(mymap);
-    var markerGeneva = L.marker([46.195, 6.132]).addTo(mymap);
-    var markerStPeters = L.marker([59.933, 30.32]).addTo(mymap);
+    let markerMoscow = L.marker([55.924, 38.012]);
+    let markerOmsk= L.marker([54.989,  73.358]);
+    let markerSemipalatinsk = L.marker([50.412, 80.241]);
+    let markerGeneva = L.marker([46.195, 6.132]);
+    let markerStPeters = L.marker([59.933, 30.32]);
 
+    const view = [55.924, 43.012];
+    const dostLocations = [markerMoscow,markerOmsk, markerSemipalatinsk, markerGeneva, markerStPeters];
+
+    const package = [dostLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 }
 
 module.exports = DostDisplay;

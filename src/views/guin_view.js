@@ -22,8 +22,6 @@ GuinDisplay.prototype.bindEvents = function () {
 GuinDisplay.prototype.render = function () {
     this.container.innerHTML = '';
 
-    mymap.setView([40.680, -90.970], 4)
-
 
     const page_title = document.querySelector('#logo')
     page_title.textContent = 'Book Trip - Ernest Hemingway'
@@ -51,8 +49,13 @@ GuinDisplay.prototype.render = function () {
     }
 
 
-    var markerBerkeley = L.marker([37.873, -122.27]).addTo(mymap);
-    var markerPortland = L.marker([45.576, -122.66]).addTo(mymap);
+    var markerBerkeley = L.marker([37.873, -122.27]);
+    var markerPortland = L.marker([45.576, -122.66]);
+    const view = [40.680, -90.970];
+    const guinLocations = [markerBerkeley,markerPortland];
+    
+    const package = [guinLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 }
 
 module.exports = GuinDisplay;

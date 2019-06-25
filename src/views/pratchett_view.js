@@ -23,10 +23,6 @@ PratchettDisplay.prototype.render = function () {
 
     this.container.innerHTML = '';
 
-    mymap.setView([54.863, -2.592], 5);
-
-
-
     const page_title = document.querySelector('#logo')
     page_title.textContent = 'Book Trip - Terry Pratchett'
 
@@ -53,6 +49,10 @@ PratchettDisplay.prototype.render = function () {
         textContainer.appendChild(description)
     }
 
+    const view = [54.863, -2.592];
+    const pratLocations = [];
+    const package = [pratLocations, view]
+    PubSub.publish("Authors Details: markers", package)
 };
 
 

@@ -6,6 +6,7 @@ const MapView = function (mapDiv, coords, zoomLevel) {
     this.coords = coords;
     this.zoomLevel = zoomLevel;
     this.leafletMap = null;
+    this.markers = null;
 }
 
 MapView.prototype.init = function () {
@@ -43,32 +44,14 @@ MapView.prototype.bindEvents = function () {
 
 MapView.prototype.addMarker = function (locations, view) {
 
+
    console.log(locations)
-
-   
-    this.leafletMap.setView(view, 5)
-
-    // locations.forEach(location => this.leafletMap.removeLayer(location.addTo(this.leafletMap)))
-    let markers = locations.map(location => location.addTo(this.leafletMap))
-    this.leafletMap.removeLayer(markers)
-
-    // this.leafletMap.on('click', function () {
-    //     this.leafletMap.removeLayer(markers);
-    // });
-    console.log(markers)
-   
-
-    
-    // var overlayMaps = {
-    //     "Cities": locations
-    // };
-    // L.control.layers(locations).addTo(this.leafletMap);
-    // leaflet.layers(locations).addTo(this.leafletMap);;
-    // let theMarker = L.marker(coords[0]).addTo(this.leafletMap); 
-    // if (theMarker != undefined) {
-    //     this.leafletMap.removeLayer(theMarker);
-    // }
-    
-  
+    this.leafletMap.setView(view, 4)
+    if(this.markers != null ){
+        this.leafletMap.removeLayer(this.markers);
+    }
+    this.markers = L.layerGroup(locations)
+    this.markers.addTo(this.leafletMap)
+    console.log(this.markers)
 }
 module.exports = MapView;
