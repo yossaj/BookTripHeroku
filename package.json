@@ -15,7 +15,7 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "express": "~4.9.8",
+    "express": "~4.17.3",
     "leaflet": "^1.5.1"
   }
 }
